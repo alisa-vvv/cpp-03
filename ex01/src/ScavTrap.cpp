@@ -15,98 +15,84 @@
 #include <limits.h>
 
 ScavTrap::ScavTrap()
-	: _name("empty_name"),
-	_hit_points(100),
-	_energy_points(50),
-	_attack_damage(20)
 {
+	ClapTrap::setName("[anonymous]");
+	ClapTrap::setHP(100);
+	ClapTrap::setEP(50);
+	ClapTrap::setDamage(50);
 }
 
-ScavTrap::ScavTrap([[maybe_unused]] std::string name)
-	: _name(name),
-	_hit_points(100),
-	_energy_points(50),
-	_attack_damage(20)
+ScavTrap::ScavTrap(std::string name)
 {
+	ClapTrap::setName(name);
+	ClapTrap::setHP(100);
+	ClapTrap::setEP(50);
+	ClapTrap::setDamage(50);
 	std::cout << CLR_MAG;
-	std::cout << "ScavTrap " << name << "'s default constructor called";
+	std::cout << "ScavTrap " << ClapTrap::getName() << "'s default constructor called";
 	std::cout << CLR_NON << '\n';
 }
 
 ScavTrap::ScavTrap(const ScavTrap& other)
-	: _name("empty_name"),
-	_hit_points(100),
-	_energy_points(50),
-	_attack_damage(20)
 {
 	std::cout << CLR_MAG;
-	std::cout << "ScavTrap " << "_name" << "'s copy constructor called";
+	std::cout << "ScavTrap " << ClapTrap::getName() << "'s copy constructor called";
 	std::cout << CLR_NON << '\n';
 	*this = other;
 }
 
-ScavTrap&	ScavTrap::operator=([[maybe_unused]] const ScavTrap& other) {
+ScavTrap&	ScavTrap::operator=(const ScavTrap& other) {
 	std::cout << CLR_MAG;
-	std::cout << "ScavTrap " << "_name" << "'s assign operator called";
+	std::cout << "ScavTrap " << ClapTrap::getName() << "'s assign operator called";
 	std::cout << CLR_NON << '\n';
 	if (this != &other) {
-		this->_name = other._name;
-		this->_hit_points = other._hit_points;
-		this->_energy_points = other._energy_points;
-		this->_attack_damage = other._attack_damage;
+		this->ClapTrap::setName(other.ClapTrap::getName());
+		this->ClapTrap::setHP(other.ClapTrap::getHP());
+		this->ClapTrap::setEP(other.ClapTrap::getEP());
+		this->ClapTrap::setDamage(other.ClapTrap::getDamage());
 	}
 	return (*this);
 }
 
 ScavTrap::~ScavTrap() {
 	std::cout << CLR_MAG;
-	std::cout << "ScavTrap " << "_name" << "'s default destructor called";
+	std::cout << "ScavTrap " << ClapTrap::getName() << "'s default destructor called";
 	std::cout << CLR_NON << '\n';
 }
 
 auto ScavTrap::printStats(
 ) -> void {
-	std::cout << CLR_YEL << _name << "'s stats:" << CLR_NON << '\n';
-	std::cout << CLR_YEL << "HP:\t" << CLR_NON;
-	std::cout << _hit_points << '\n';
-	std::cout << CLR_YEL << "EP:\t" << CLR_NON;
-	std::cout << _energy_points << '\n';
-	std::cout << CLR_YEL << "AD:\t" << CLR_NON;
-	std::cout << _attack_damage << '\n';
+	ClapTrap::printStats();
 }
 
 auto	ScavTrap::attack(
 	const std::string&	target
 ) -> void {
-	if (_energy_points == 0)
+	if (ClapTrap::useEP() == false)
 		return ;
-	_energy_points--;
-	std::cout << "ScavTrap " << _name << " attacks " << target;
-	std::cout << " causing " <<  _attack_damage << " points of damage!\n";
+	std::cout << "ScavTrap " << ClapTrap::getName() << " attacks " << target;
+	std::cout << " causing " <<  ClapTrap::getDamage() << " points of damage!\n";
 }
 
 auto	ScavTrap::takeDamage(
 	unsigned int	amount
 ) -> void {
-	if (_hit_points == 0)
-		return ;
-	if (amount < _hit_points)
-		_hit_points -= amount;
-	else
-		_hit_points = 0;
-	std::cout << "ScavTrap " << _name << " takes " << amount;
+	ClapTrap::reduceHP(amount);
+	std::cout << "ScavTrap " << ClapTrap::getName() << " takes " << amount;
 	std::cout << " points of damage!\n";
 }
 
 auto	ScavTrap::beReparied(
 	unsigned int	amount
 ) -> void {
-	if (_energy_points == 0)
+	if (ClapTrap::useEP() == false)
 		return ;
-	_energy_points--;
-	if (UINT_MAX - _hit_points < amount)
-		_hit_points = UINT_MAX;
-	_hit_points += amount;
-	std::cout << "ScavTrap " << _name << " repairs " << amount;
+	ClapTrap::increaseHP(amount);
+	std::cout << "ScavTrap " << ClapTrap::getName() << " repairs " << amount;
 	std::cout << " hit points!\n";
+}
+
+auto ScavTrap::guardGate(
+) -> void {
+	std::cout << "ScavTrap " << ClapTrap::getName() << " is in Gate Keeper mode!";
 }

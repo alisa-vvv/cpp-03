@@ -14,6 +14,9 @@
 #include <iostream>
 #include <limits.h>
 
+/*
+ * Public members
+*/
 ClapTrap::ClapTrap()
 	: _name("[anonymous]"),
 	_hit_points(10),
@@ -37,7 +40,7 @@ ClapTrap::ClapTrap(std::string name)
 }
 
 ClapTrap::ClapTrap(const ClapTrap& other)
-	: _name("empty_name"),
+	: _name("[anonymous]"),
 	_hit_points(10),
 	_energy_points(10),
 	_attack_damage(0)
@@ -81,9 +84,8 @@ auto ClapTrap::printStats(
 auto	ClapTrap::attack(
 	const std::string&	target
 ) -> void {
-	if (_energy_points == 0)
+	if (useEP() == false)
 		return ;
-	_energy_points--;
 	std::cout << "ClapTrap " << _name << " attacks " << target;
 	std::cout << " causing " <<  _attack_damage << " points of damage!\n";
 }
@@ -91,12 +93,8 @@ auto	ClapTrap::attack(
 auto	ClapTrap::takeDamage(
 	unsigned int	amount
 ) -> void {
-	if (_hit_points == 0)
+	if (reduceHP(amount) == false)
 		return ;
-	if (amount < _hit_points)
-		_hit_points -= amount;
-	else
-		_hit_points = 0;
 	std::cout << "ClapTrap " << _name << " takes " << amount;
 	std::cout << " points of damage!\n";
 }
@@ -104,12 +102,79 @@ auto	ClapTrap::takeDamage(
 auto	ClapTrap::beReparied(
 	unsigned int	amount
 ) -> void {
+	useEP();
+	increaseHP(amount);
+	std::cout << "ClapTrap " << _name << " repairs " << amount;
+	std::cout << " hit points!\n";
+}
+
+auto	ClapTrap::setName(
+	const std::string	name
+) -> void {
+	_name = name;
+}
+auto	ClapTrap::getName(
+	void
+) const -> const std::string& {
+	return (_name);
+}
+
+
+auto	ClapTrap::setDamage(
+	const unsigned int	amount
+) -> void {
+	_attack_damage = amount;
+}
+auto	ClapTrap::getDamage(
+	void
+) const -> unsigned int {
+	return (_attack_damage);
+}
+
+auto	ClapTrap::setHP(
+	const unsigned int	amount
+) -> void {
+	_hit_points = amount;
+}
+auto	ClapTrap::getHP(
+	void
+) const -> unsigned int {
+	return (_hit_points);
+}
+
+auto	ClapTrap::setEP(
+	const unsigned int	amount
+) -> void {
+	_energy_points = amount;
+}
+auto	ClapTrap::getEP(
+	void
+) const -> unsigned int {
+	return (_energy_points);
+}
+
+auto	ClapTrap::useEP(
+) -> bool {
 	if (_energy_points == 0)
-		return ;
+		return (false);
 	_energy_points--;
+	return (true);
+}
+auto	ClapTrap::reduceHP(
+	const unsigned int	amount
+) -> bool {
+	if (_hit_points == 0)
+		return (false);
+	if (amount < _hit_points)
+		_hit_points -= amount;
+	else
+		_hit_points = 0;
+	return (true);
+}
+auto	ClapTrap::increaseHP(
+	const unsigned int	amount
+) -> void {
 	if (UINT_MAX - _hit_points < amount)
 		_hit_points = UINT_MAX;
 	_hit_points += amount;
-	std::cout << "ClapTrap " << _name << " repairs " << amount;
-	std::cout << " hit points!\n";
 }

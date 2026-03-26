@@ -29,19 +29,58 @@ public:
 	ClapTrap&	operator=(const ClapTrap& other);
 	~ClapTrap();
 
+	/*
+	 * Unique ClapTrap methods
+	 */
 	auto attack(
 		const std::string&	target
 	) -> void;
-
 	auto takeDamage(
 		unsigned int	amount
 	) -> void;
-
 	auto beReparied(
 		unsigned int	amount
 	) -> void;
 
+	/*
+	* Setters and getters
+	*/
+	auto	setName(
+		const std::string	name
+	) -> void;
+	auto	getName(
+	) const -> const std::string&;
+
+	auto	setDamage(
+		const unsigned int	amount
+	) -> void;
+	auto	getDamage(
+	) const -> unsigned int;
+
+	auto	setHP(
+		const unsigned int	amount
+	) -> void;
+	auto	getHP(
+	) const -> unsigned int;
+
+	auto	setEP(
+		const unsigned int	amount
+	) -> void;
+	auto	getEP(
+	) const -> unsigned int;
+
+	/*
+	* Functions for re-use in child classes
+	*/
 	auto printStats(
+	) -> void;
+	auto	useEP(
+	) -> bool;
+	auto	reduceHP(
+		const unsigned int	amount
+	) -> bool;
+	auto	increaseHP(
+		const unsigned int	amount
 	) -> void;
 
 private:
@@ -49,7 +88,4 @@ private:
 	unsigned int	_hit_points;
 	unsigned int	_energy_points;
 	unsigned int	_attack_damage;
-
-	auto	_checkEnergy(
-	) -> void;
 };

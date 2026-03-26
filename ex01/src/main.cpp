@@ -16,22 +16,23 @@
 auto	main(
 	void
 ) -> int {
-	ClapTrap	fedya("Fedya");
 	ClapTrap	vanya("Vanya");
 	ScavTrap	sveta("Sveta");
 
-	fedya.printStats();
 	vanya.printStats();
 	sveta.printStats();
 
-	fedya.attack("Vanya");
-	vanya.takeDamage(3);
-	vanya.attack("Fedya");
-	fedya.takeDamage(4);
+	vanya.attack("Sveta");
+	sveta.takeDamage(3);
 	sveta.attack("Vanya");
 	vanya.takeDamage(20);
 
-	fedya.printStats();
+	vanya.printStats();
+	sveta.printStats();
+
+	vanya.beReparied(7);
+	sveta.beReparied(2);
+
 	vanya.printStats();
 	sveta.printStats();
 }
