@@ -16,14 +16,15 @@ auto	main(
 	void
 ) -> int {
 	ClapTrap	fedya("Fedya");
-	ClapTrap	vanya(fedya);
-	//ClapTrap	vanya = fedya;
+	ClapTrap	vanya("Vanya");
 
 	fedya.printStats();
 	vanya.printStats();
 
 	fedya.attack("Vanya");
+	vanya.takeDamage(3);
 	vanya.attack("Fedya");
+	fedya.takeDamage(4);
 
 	fedya.printStats();
 	vanya.printStats();
