@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                            ::::::::        */
-/*   ScavTrap.hpp                                            :+:    :+:       */
+/*   FragTrap.hpp                                            :+:    :+:       */
 /*                                                          +:+               */
 /*   By: avaliull <avaliull@student.codam.nl>              +#+                */
 /*                                                        +#+                 */
@@ -14,14 +14,14 @@
 
 #include "ClapTrap.hpp"
 
-class ScavTrap : public ClapTrap {
+class FragTrap : public ClapTrap {
 public:
 	using ClapTrap::ClapTrap;
-	ScavTrap();
-	ScavTrap(std::string name);
-	ScavTrap(const ScavTrap& other);
-	ScavTrap&	operator=(const ScavTrap& other);
-	~ScavTrap();
+	FragTrap();
+	FragTrap(std::string name);
+	FragTrap(const FragTrap& other);
+	FragTrap&	operator=(const FragTrap& other);
+	~FragTrap();
 
 	// this inherits all the constructors/destructors from ClapTrap class.
 	// if only some constructors need to be inherited, you just call the parent's
@@ -38,7 +38,7 @@ public:
 		unsigned int	amount
 	) -> void;
 
-	auto guardGate(
+	auto highFiveGuys(
 	) -> void;
 
 	auto printStats(

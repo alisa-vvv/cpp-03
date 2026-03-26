@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                            ::::::::        */
-/*   ScavTrap.cpp                                            :+:    :+:       */
+/*   FragTrap.cpp                                            :+:    :+:       */
 /*                                                          +:+               */
 /*   By: avaliull <avaliull@student.codam.nl>              +#+                */
 /*                                                        +#+                 */
@@ -10,40 +10,40 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ScavTrap.hpp"
+#include "FragTrap.hpp"
 #include <iostream>
 #include <limits.h>
 
-ScavTrap::ScavTrap()
+FragTrap::FragTrap()
 {
 	ClapTrap::setName("[anonymous]");
 	ClapTrap::setHP(100);
-	ClapTrap::setEP(50);
-	ClapTrap::setDamage(50);
+	ClapTrap::setEP(100);
+	ClapTrap::setDamage(30);
 }
 
-ScavTrap::ScavTrap(std::string name)
+FragTrap::FragTrap(std::string name)
 {
 	ClapTrap::setName(name);
 	ClapTrap::setHP(100);
-	ClapTrap::setEP(50);
-	ClapTrap::setDamage(50);
+	ClapTrap::setEP(100);
+	ClapTrap::setDamage(30);
 	std::cout << CLR_MAG;
-	std::cout << "ScavTrap " << ClapTrap::getName() << "'s default constructor called";
+	std::cout << "FragTrap " << ClapTrap::getName() << "'s default constructor called";
 	std::cout << CLR_NON << '\n';
 }
 
-ScavTrap::ScavTrap(const ScavTrap& other)
+FragTrap::FragTrap(const FragTrap& other)
 {
 	std::cout << CLR_MAG;
-	std::cout << "ScavTrap " << ClapTrap::getName() << "'s copy constructor called";
+	std::cout << "FragTrap " << ClapTrap::getName() << "'s copy constructor called";
 	std::cout << CLR_NON << '\n';
 	*this = other;
 }
 
-ScavTrap&	ScavTrap::operator=(const ScavTrap& other) {
+FragTrap&	FragTrap::operator=(const FragTrap& other) {
 	std::cout << CLR_MAG;
-	std::cout << "ScavTrap " << ClapTrap::getName() << "'s assign operator called";
+	std::cout << "FragTrap " << ClapTrap::getName() << "'s assign operator called";
 	std::cout << CLR_NON << '\n';
 	if (this != &other) {
 		this->ClapTrap::setName(other.ClapTrap::getName());
@@ -54,45 +54,45 @@ ScavTrap&	ScavTrap::operator=(const ScavTrap& other) {
 	return (*this);
 }
 
-ScavTrap::~ScavTrap() {
+FragTrap::~FragTrap() {
 	std::cout << CLR_MAG;
-	std::cout << "ScavTrap " << ClapTrap::getName() << "'s default destructor called";
+	std::cout << "FragTrap " << ClapTrap::getName() << "'s default destructor called";
 	std::cout << CLR_NON << '\n';
 }
 
-auto ScavTrap::printStats(
+auto FragTrap::printStats(
 ) -> void {
 	ClapTrap::printStats();
 }
 
-auto	ScavTrap::attack(
+auto	FragTrap::attack(
 	const std::string&	target
 ) -> void {
 	if (ClapTrap::useEP() == false)
 		return ;
-	std::cout << "ScavTrap " << ClapTrap::getName() << " attacks " << target;
+	std::cout << "FragTrap " << ClapTrap::getName() << " attacks " << target;
 	std::cout << " causing " <<  ClapTrap::getDamage() << " points of damage!\n";
 }
 
-auto	ScavTrap::takeDamage(
+auto	FragTrap::takeDamage(
 	unsigned int	amount
 ) -> void {
 	ClapTrap::reduceHP(amount);
-	std::cout << "ScavTrap " << ClapTrap::getName() << " takes " << amount;
+	std::cout << "FragTrap " << ClapTrap::getName() << " takes " << amount;
 	std::cout << " points of damage!\n";
 }
 
-auto	ScavTrap::beReparied(
+auto	FragTrap::beReparied(
 	unsigned int	amount
 ) -> void {
 	if (ClapTrap::useEP() == false)
 		return ;
 	ClapTrap::increaseHP(amount);
-	std::cout << "ScavTrap " << ClapTrap::getName() << " repairs " << amount;
+	std::cout << "FragTrap " << ClapTrap::getName() << " repairs " << amount;
 	std::cout << " hit points!\n";
 }
 
-auto ScavTrap::guardGate(
+auto FragTrap::highFiveGuys(
 ) -> void {
-	std::cout << "ScavTrap " << ClapTrap::getName() << " is in Gate Keeper mode!\n";
+	std::cout << "FragTrap " << ClapTrap::getName() << " wants a HIGH FIIIIVEEE!!!\n";
 }
