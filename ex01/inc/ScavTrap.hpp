@@ -1,34 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                            ::::::::        */
-/*   ClapTrap.hpp                                            :+:    :+:       */
+/*   ScavTrap.hpp                                            :+:    :+:       */
 /*                                                          +:+               */
 /*   By: avaliull <avaliull@student.codam.nl>              +#+                */
 /*                                                        +#+                 */
-/*   Created: 2026/03/24 16:36:59 by avaliull            #+#    #+#           */
-/*   Updated: 2026/03/26 15:13:55 by avaliull            ########   odam.nl   */
+/*   Created: 2026/03/26 15:09:15 by avaliull            #+#    #+#           */
+/*   Updated: 2026/03/26 15:53:52 by avaliull            ########   odam.nl   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-#include <string>
+#include "ClapTrap.hpp"
 
-#define	CLR_NON "\033[0m"
-#define	CLR_YEL "\033[93m"
-#define	CLR_CYA "\033[96m"
-#define	CLR_RED "\033[31m"
-#define	CLR_GRN "\033[92m"
-#define	CLR_MAG "\033[95m"
-
-class	ClapTrap {
+class ScavTrap : public ClapTrap {
 public:
-	ClapTrap();
-	ClapTrap(std::string name);
-	ClapTrap(const ClapTrap& other);
-	ClapTrap&	operator=(const ClapTrap& other);
-	~ClapTrap();
+	using ClapTrap::ClapTrap;
+	ScavTrap();
+	ScavTrap(std::string name);
+	ScavTrap(const ScavTrap& other);
+	ScavTrap&	operator=(const ScavTrap& other);
+	~ScavTrap();
 
+	// this inherits all the constructors/destructors from ClapTrap class.
+	// if only some constructors need to be inherited, you just call the parent's
+	// constructors from a child's constructors.
 	auto attack(
 		const std::string&	target
 	) -> void;
@@ -49,7 +46,4 @@ private:
 	unsigned int	_hit_points;
 	unsigned int	_energy_points;
 	unsigned int	_attack_damage;
-
-	auto	_checkEnergy(
-	) -> void;
 };

@@ -1,54 +1,53 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                            ::::::::        */
-/*   ClapTrap.cpp                                            :+:    :+:       */
+/*   ScavTrap.cpp                                            :+:    :+:       */
 /*                                                          +:+               */
 /*   By: avaliull <avaliull@student.codam.nl>              +#+                */
 /*                                                        +#+                 */
-/*   Created: 2026/03/24 16:36:46 by avaliull            #+#    #+#           */
-/*   Updated: 2026/03/26 15:21:19 by avaliull            ########   odam.nl   */
+/*   Created: 2026/03/26 15:09:05 by avaliull            #+#    #+#           */
+/*   Updated: 2026/03/26 15:53:27 by avaliull            ########   odam.nl   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ClapTrap.hpp"
+#include "ScavTrap.hpp"
 #include <iostream>
 #include <limits.h>
 
-ClapTrap::ClapTrap()
+ScavTrap::ScavTrap()
 	: _name("empty_name"),
-	_hit_points(10),
-	_energy_points(10),
-	_attack_damage(0)
+	_hit_points(100),
+	_energy_points(50),
+	_attack_damage(20)
 {
-	std::cout << "ClapTrap " << "empty_name" << "'s default constructor called";
 }
 
-ClapTrap::ClapTrap(std::string name)
+ScavTrap::ScavTrap([[maybe_unused]] std::string name)
 	: _name(name),
-	_hit_points(10),
-	_energy_points(10),
-	_attack_damage(0)
+	_hit_points(100),
+	_energy_points(50),
+	_attack_damage(20)
 {
 	std::cout << CLR_MAG;
-	std::cout << "ClapTrap " << _name << "'s default constructor called";
+	std::cout << "ScavTrap " << name << "'s default constructor called";
 	std::cout << CLR_NON << '\n';
 }
 
-ClapTrap::ClapTrap(const ClapTrap& other)
+ScavTrap::ScavTrap(const ScavTrap& other)
 	: _name("empty_name"),
-	_hit_points(10),
-	_energy_points(10),
-	_attack_damage(0)
+	_hit_points(100),
+	_energy_points(50),
+	_attack_damage(20)
 {
 	std::cout << CLR_MAG;
-	std::cout << "ClapTrap " << _name << "'s copy constructor called";
+	std::cout << "ScavTrap " << "_name" << "'s copy constructor called";
 	std::cout << CLR_NON << '\n';
 	*this = other;
 }
 
-ClapTrap&	ClapTrap::operator=(const ClapTrap& other) {
+ScavTrap&	ScavTrap::operator=([[maybe_unused]] const ScavTrap& other) {
 	std::cout << CLR_MAG;
-	std::cout << "ClapTrap " << _name << "'s assign operator called";
+	std::cout << "ScavTrap " << "_name" << "'s assign operator called";
 	std::cout << CLR_NON << '\n';
 	if (this != &other) {
 		this->_name = other._name;
@@ -59,13 +58,13 @@ ClapTrap&	ClapTrap::operator=(const ClapTrap& other) {
 	return (*this);
 }
 
-ClapTrap::~ClapTrap() {
+ScavTrap::~ScavTrap() {
 	std::cout << CLR_MAG;
-	std::cout << "ClapTrap " << _name << "'s default destructor called";
+	std::cout << "ScavTrap " << "_name" << "'s default destructor called";
 	std::cout << CLR_NON << '\n';
 }
 
-auto ClapTrap::printStats(
+auto ScavTrap::printStats(
 ) -> void {
 	std::cout << CLR_YEL << _name << "'s stats:" << CLR_NON << '\n';
 	std::cout << CLR_YEL << "HP:\t" << CLR_NON;
@@ -76,17 +75,17 @@ auto ClapTrap::printStats(
 	std::cout << _attack_damage << '\n';
 }
 
-auto	ClapTrap::attack(
+auto	ScavTrap::attack(
 	const std::string&	target
 ) -> void {
 	if (_energy_points == 0)
 		return ;
 	_energy_points--;
-	std::cout << "ClapTrap " << _name << " attacks " << target;
+	std::cout << "ScavTrap " << _name << " attacks " << target;
 	std::cout << " causing " <<  _attack_damage << " points of damage!\n";
 }
 
-auto	ClapTrap::takeDamage(
+auto	ScavTrap::takeDamage(
 	unsigned int	amount
 ) -> void {
 	if (_hit_points == 0)
@@ -95,11 +94,11 @@ auto	ClapTrap::takeDamage(
 		_hit_points -= amount;
 	else
 		_hit_points = 0;
-	std::cout << "ClapTrap " << _name << " takes " << amount;
+	std::cout << "ScavTrap " << _name << " takes " << amount;
 	std::cout << " points of damage!\n";
 }
 
-auto	ClapTrap::beReparied(
+auto	ScavTrap::beReparied(
 	unsigned int	amount
 ) -> void {
 	if (_energy_points == 0)
@@ -108,6 +107,6 @@ auto	ClapTrap::beReparied(
 	if (UINT_MAX - _hit_points < amount)
 		_hit_points = UINT_MAX;
 	_hit_points += amount;
-	std::cout << "ClapTrap " << _name << " repairs " << amount;
+	std::cout << "ScavTrap " << _name << " repairs " << amount;
 	std::cout << " hit points!\n";
 }

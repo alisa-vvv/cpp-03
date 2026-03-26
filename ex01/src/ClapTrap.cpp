@@ -6,7 +6,7 @@
 /*   By: avaliull <avaliull@student.codam.nl>              +#+                */
 /*                                                        +#+                 */
 /*   Created: 2026/03/24 16:36:46 by avaliull            #+#    #+#           */
-/*   Updated: 2026/03/26 15:21:19 by avaliull            ########   odam.nl   */
+/*   Updated: 2026/03/26 15:26:34 by avaliull            ########   odam.nl   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,14 @@
 #include <limits.h>
 
 ClapTrap::ClapTrap()
-	: _name("empty_name"),
+	: _name("[anonymous]"),
 	_hit_points(10),
 	_energy_points(10),
 	_attack_damage(0)
 {
-	std::cout << "ClapTrap " << "empty_name" << "'s default constructor called";
+	std::cout << CLR_MAG;
+	std::cout << "ClapTrap " << _name << "'s default constructor called";
+	std::cout << CLR_NON << '\n';
 }
 
 ClapTrap::ClapTrap(std::string name)
