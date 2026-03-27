@@ -108,51 +108,6 @@ auto	ClapTrap::beReparied(
 	std::cout << " hit points!\n";
 }
 
-auto	ClapTrap::setName(
-	const std::string	name
-) -> void {
-	_name = name;
-}
-auto	ClapTrap::getName(
-	void
-) const -> const std::string& {
-	return (_name);
-}
-
-
-auto	ClapTrap::setDamage(
-	const unsigned int	amount
-) -> void {
-	_attack_damage = amount;
-}
-auto	ClapTrap::getDamage(
-	void
-) const -> unsigned int {
-	return (_attack_damage);
-}
-
-auto	ClapTrap::setHP(
-	const unsigned int	amount
-) -> void {
-	_hit_points = amount;
-}
-auto	ClapTrap::getHP(
-	void
-) const -> unsigned int {
-	return (_hit_points);
-}
-
-auto	ClapTrap::setEP(
-	const unsigned int	amount
-) -> void {
-	_energy_points = amount;
-}
-auto	ClapTrap::getEP(
-	void
-) const -> unsigned int {
-	return (_energy_points);
-}
-
 auto	ClapTrap::useEP(
 ) -> bool {
 	if (_energy_points == 0)

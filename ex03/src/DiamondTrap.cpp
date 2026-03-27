@@ -16,47 +16,43 @@
 
 DiamondTrap::DiamondTrap()
 {
-	ClapTrap::setName("[anonymous]");
-	ClapTrap::setHP(100);
-	ClapTrap::setEP(50);
-	ClapTrap::setDamage(50);
+	_name = "[anonymous]";
 }
 
 DiamondTrap::DiamondTrap(std::string name)
 {
-	ClapTrap::setName(name);
-	ClapTrap::setHP(100);
-	ClapTrap::setEP(50);
-	ClapTrap::setDamage(50);
+	_name = name;
+	FragTrap::_name = name;
+	ScavTrap::_name = name;
 	std::cout << CLR_MAG;
-	std::cout << "DiamondTrap " << ClapTrap::getName() << "'s default constructor called";
+	std::cout << "DiamondTrap " << _name << "'s default constructor called";
 	std::cout << CLR_NON << '\n';
 }
 
 DiamondTrap::DiamondTrap(const DiamondTrap& other)
 {
 	std::cout << CLR_MAG;
-	std::cout << "DiamondTrap " << ClapTrap::getName() << "'s copy constructor called";
+	std::cout << "DiamondTrap " << _name << "'s copy constructor called";
 	std::cout << CLR_NON << '\n';
 	*this = other;
 }
 
 DiamondTrap&	DiamondTrap::operator=(const DiamondTrap& other) {
 	std::cout << CLR_MAG;
-	std::cout << "DiamondTrap " << ClapTrap::getName() << "'s assign operator called";
+	std::cout << "DiamondTrap " << _name << "'s assign operator called";
 	std::cout << CLR_NON << '\n';
 	if (this != &other) {
-		this->ClapTrap::setName(other.ClapTrap::getName());
-		this->ClapTrap::setHP(other.ClapTrap::getHP());
-		this->ClapTrap::setEP(other.ClapTrap::getEP());
-		this->ClapTrap::setDamage(other.ClapTrap::getDamage());
+		this->_name = other._name;
+		this->_hit_points = other._hit_points;
+		this->_energy_points = other._energy_points;
+		this->_attack_damage = other._attack_damage;
 	}
 	return (*this);
 }
 
 DiamondTrap::~DiamondTrap() {
 	std::cout << CLR_MAG;
-	std::cout << "DiamondTrap " << ClapTrap::getName() << "'s default destructor called";
+	std::cout << "DiamondTrap " << _name << "'s default destructor called";
 	std::cout << CLR_NON << '\n';
 }
 
@@ -65,20 +61,20 @@ auto DiamondTrap::printStats(
 	ClapTrap::printStats();
 }
 
-auto	DiamondTrap::attack(
-	const std::string&	target
-) -> void {
-	if (ClapTrap::useEP() == false)
-		return ;
-	std::cout << "DiamondTrap " << ClapTrap::getName() << " attacks " << target;
-	std::cout << " causing " <<  ClapTrap::getDamage() << " points of damage!\n";
-}
+//auto	DiamondTrap::attack(
+//	const std::string&	target
+//) -> void {
+//	if (ClapTrap::useEP() == false)
+//		return ;
+//	std::cout << "DiamondTrap " << _name << " attacks " << target;
+//	std::cout << " causing " <<  _attack_damage << " points of damage!\n";
+//}
 
 auto	DiamondTrap::takeDamage(
 	unsigned int	amount
 ) -> void {
 	ClapTrap::reduceHP(amount);
-	std::cout << "DiamondTrap " << ClapTrap::getName() << " takes " << amount;
+	std::cout << "DiamondTrap " << _name << " takes " << amount;
 	std::cout << " points of damage!\n";
 }
 
@@ -88,11 +84,6 @@ auto	DiamondTrap::beReparied(
 	if (ClapTrap::useEP() == false)
 		return ;
 	ClapTrap::increaseHP(amount);
-	std::cout << "DiamondTrap " << ClapTrap::getName() << " repairs " << amount;
+	std::cout << "DiamondTrap " << _name << " repairs " << amount;
 	std::cout << " hit points!\n";
-}
-
-auto DiamondTrap::guardGate(
-) -> void {
-	std::cout << "DiamondTrap " << ClapTrap::getName() << " is in Gate Keeper mode!\n";
 }

@@ -45,29 +45,29 @@ public:
 	/*
 	* Setters and getters
 	*/
-	auto	setName(
-		const std::string	name
-	) -> void;
-	auto	getName(
-	) const -> const std::string&;
+	//auto	setName(
+	//	const std::string	name
+	//) -> void;
+	//auto	getName(
+	//) const -> const std::string&;
 
-	auto	setDamage(
-		const unsigned int	amount
-	) -> void;
-	auto	getDamage(
-	) const -> unsigned int;
+	//auto	setDamage(
+	//	const unsigned int	amount
+	//) -> void;
+	//auto	getDamage(
+	//) const -> unsigned int;
 
-	auto	setHP(
-		const unsigned int	amount
-	) -> void;
-	auto	getHP(
-	) const -> unsigned int;
+	//auto	setHP(
+	//	const unsigned int	amount
+	//) -> void;
+	//auto	getHP(
+	//) const -> unsigned int;
 
-	auto	setEP(
-		const unsigned int	amount
-	) -> void;
-	auto	getEP(
-	) const -> unsigned int;
+	//auto	setEP(
+	//	const unsigned int	amount
+	//) -> void;
+	//auto	getEP(
+	//) const -> unsigned int;
 
 	/*
 	* Functions for re-use in child classes
@@ -83,7 +83,7 @@ public:
 		const unsigned int	amount
 	) -> void;
 
-private:
+protected:
 	std::string		_name;
 	unsigned int	_hit_points;
 	unsigned int	_energy_points;

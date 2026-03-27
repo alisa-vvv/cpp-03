@@ -16,47 +16,47 @@
 
 FragTrap::FragTrap()
 {
-	ClapTrap::setName("[anonymous]");
-	ClapTrap::setHP(100);
-	ClapTrap::setEP(100);
-	ClapTrap::setDamage(30);
+	_name = "[anonymous]";
+	_hit_points = 100;
+	_energy_points = 100;
+	_attack_damage = 30;
 }
 
 FragTrap::FragTrap(std::string name)
 {
-	ClapTrap::setName(name);
-	ClapTrap::setHP(100);
-	ClapTrap::setEP(100);
-	ClapTrap::setDamage(30);
+	_name = name;
+	_hit_points = 100;
+	_energy_points = 100;
+	_attack_damage = 30;
 	std::cout << CLR_MAG;
-	std::cout << "FragTrap " << ClapTrap::getName() << "'s default constructor called";
+	std::cout << "FragTrap " << _name << "'s default constructor called";
 	std::cout << CLR_NON << '\n';
 }
 
 FragTrap::FragTrap(const FragTrap& other)
 {
 	std::cout << CLR_MAG;
-	std::cout << "FragTrap " << ClapTrap::getName() << "'s copy constructor called";
+	std::cout << "FragTrap " << _name << "'s copy constructor called";
 	std::cout << CLR_NON << '\n';
 	*this = other;
 }
 
 FragTrap&	FragTrap::operator=(const FragTrap& other) {
 	std::cout << CLR_MAG;
-	std::cout << "FragTrap " << ClapTrap::getName() << "'s assign operator called";
+	std::cout << "FragTrap " << _name << "'s assign operator called";
 	std::cout << CLR_NON << '\n';
 	if (this != &other) {
-		this->ClapTrap::setName(other.ClapTrap::getName());
-		this->ClapTrap::setHP(other.ClapTrap::getHP());
-		this->ClapTrap::setEP(other.ClapTrap::getEP());
-		this->ClapTrap::setDamage(other.ClapTrap::getDamage());
+		this->_name = other._name;
+		this->_hit_points = other._hit_points;
+		this->_energy_points = other._energy_points;
+		this->_attack_damage = other._attack_damage;
 	}
 	return (*this);
 }
 
 FragTrap::~FragTrap() {
 	std::cout << CLR_MAG;
-	std::cout << "FragTrap " << ClapTrap::getName() << "'s default destructor called";
+	std::cout << "FragTrap " << _name << "'s default destructor called";
 	std::cout << CLR_NON << '\n';
 }
 
@@ -70,15 +70,15 @@ auto	FragTrap::attack(
 ) -> void {
 	if (ClapTrap::useEP() == false)
 		return ;
-	std::cout << "FragTrap " << ClapTrap::getName() << " attacks " << target;
-	std::cout << " causing " <<  ClapTrap::getDamage() << " points of damage!\n";
+	std::cout << "FragTrap " << _name << " attacks " << target;
+	std::cout << " causing " <<  _attack_damage << " points of damage!\n";
 }
 
 auto	FragTrap::takeDamage(
 	unsigned int	amount
 ) -> void {
 	ClapTrap::reduceHP(amount);
-	std::cout << "FragTrap " << ClapTrap::getName() << " takes " << amount;
+	std::cout << "FragTrap " << _name << " takes " << amount;
 	std::cout << " points of damage!\n";
 }
 
@@ -88,11 +88,11 @@ auto	FragTrap::beReparied(
 	if (ClapTrap::useEP() == false)
 		return ;
 	ClapTrap::increaseHP(amount);
-	std::cout << "FragTrap " << ClapTrap::getName() << " repairs " << amount;
+	std::cout << "FragTrap " << _name << " repairs " << amount;
 	std::cout << " hit points!\n";
 }
 
 auto FragTrap::highFiveGuys(
 ) -> void {
-	std::cout << "FragTrap " << ClapTrap::getName() << " wants a HIGH FIIIIVEEE!!!\n";
+	std::cout << "FragTrap " << _name << " wants a HIGH FIIIIVEEE!!!\n";
 }

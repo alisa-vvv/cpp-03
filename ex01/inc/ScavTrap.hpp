@@ -43,4 +43,6 @@ public:
 
 	auto printStats(
 	) -> void;
+
+private:
 };

@@ -18,7 +18,6 @@
 
 class DiamondTrap : public FragTrap, public ScavTrap {
 public:
-	using ScavTrap::FragTrap;
 	DiamondTrap();
 	DiamondTrap(std::string name);
 	DiamondTrap(const DiamondTrap& other);
@@ -28,10 +27,13 @@ public:
 	// this inherits all the constructors/destructors from ClapTrap class.
 	// if only some constructors need to be inherited, you just call the parent's
 	// constructors from a child's constructors.
-	auto attack(
-		const std::string&	target
-	) -> void;
-
+	using	ScavTrap::attack;
+	using	ScavTrap::guardGate;
+	using	FragTrap::highFiveGuys;
+//	auto attack(
+//		const std::string&	target
+//	) -> void;
+//
 	auto takeDamage(
 		unsigned int	amount
 	) -> void;
@@ -40,12 +42,16 @@ public:
 		unsigned int	amount
 	) -> void;
 
-	auto guardGate(
-	) -> void;
-
+//	auto guardGate(
+//	) -> void;
+//
 	auto printStats(
 	) -> void;
 
+protected:
 private:
-	ClapTrap::_name;
+	std::string	_name;
+	using	FragTrap::_hit_points;
+	using	ScavTrap::_energy_points;
+	using	FragTrap::_attack_damage;
 };
