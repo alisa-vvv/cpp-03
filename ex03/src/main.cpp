@@ -10,19 +10,24 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-//#include "ClapTrap.hpp"
-//#include "ScavTrap.hpp"
-//#include "FragTrap.hpp"
 #include "DiamondTrap.hpp"
 
 auto	main(
 	void
 ) -> int {
 	DiamondTrap	emerald("Emerald");
+//	DiamondTrap	emerald_clone(emerald);
+//	DiamondTrap	emerald_clone2 = emerald;
 
-	emerald.attack("Dumb");
+	emerald.attack("Emerald");
+	emerald.takeDamage(20);
+	emerald.printStats();
+	emerald.beReparied(25);
+	emerald.printStats();
 	emerald.guardGate();
 	emerald.highFiveGuys();
+	emerald.whoAmI();
 
-	emerald.printStats();
+//	emerald_clone.printStats();
+//	emerald_clone2.printStats();
 }

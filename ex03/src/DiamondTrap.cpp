@@ -22,8 +22,7 @@ DiamondTrap::DiamondTrap()
 DiamondTrap::DiamondTrap(std::string name)
 {
 	_name = name;
-	FragTrap::_name = name;
-	ScavTrap::_name = name;
+	ClapTrap::_name = name + "_clap_name";
 	std::cout << CLR_MAG;
 	std::cout << "DiamondTrap " << _name << "'s default constructor called";
 	std::cout << CLR_NON << '\n';
@@ -42,6 +41,7 @@ DiamondTrap&	DiamondTrap::operator=(const DiamondTrap& other) {
 	std::cout << "DiamondTrap " << _name << "'s assign operator called";
 	std::cout << CLR_NON << '\n';
 	if (this != &other) {
+		ClapTrap::_name = other._name + "_clap_name";
 		this->_name = other._name;
 		this->_hit_points = other._hit_points;
 		this->_energy_points = other._energy_points;
@@ -61,15 +61,6 @@ auto DiamondTrap::printStats(
 	ClapTrap::printStats();
 }
 
-//auto	DiamondTrap::attack(
-//	const std::string&	target
-//) -> void {
-//	if (ClapTrap::useEP() == false)
-//		return ;
-//	std::cout << "DiamondTrap " << _name << " attacks " << target;
-//	std::cout << " causing " <<  _attack_damage << " points of damage!\n";
-//}
-
 auto	DiamondTrap::takeDamage(
 	unsigned int	amount
 ) -> void {
@@ -86,4 +77,10 @@ auto	DiamondTrap::beReparied(
 	ClapTrap::increaseHP(amount);
 	std::cout << "DiamondTrap " << _name << " repairs " << amount;
 	std::cout << " hit points!\n";
+}
+
+auto	DiamondTrap::whoAmI(
+) -> void {
+	std::cout << "My name is: " << _name << '\n';;
+	std::cout << "My ClapTrap name is: " << ClapTrap::_name << '\n';;
 }

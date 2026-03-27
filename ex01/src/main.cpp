@@ -10,31 +10,26 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ClapTrap.hpp"
 #include "ScavTrap.hpp"
 
 auto	main(
 	void
 ) -> int {
-	ClapTrap	vanya("Vanya");
 	ScavTrap	sveta("Sveta");
+	//ScavTrap	sveta_clone(sveta);
+	//ScavTrap	sveta_clone_2 = sveta;
 
-	vanya.printStats();
 	sveta.printStats();
 
-	vanya.attack("Sveta");
-	sveta.takeDamage(3);
-	sveta.attack("Vanya");
-	vanya.takeDamage(20);
-
-	vanya.printStats();
+	sveta.attack("Sveta");
+	sveta.takeDamage(20);
 	sveta.printStats();
 
-	vanya.beReparied(7);
-	sveta.beReparied(2);
-
-	vanya.printStats();
+	sveta.beReparied(25);
 	sveta.printStats();
 
 	sveta.guardGate();
+
+	//sveta_clone.printStats();
+	//sveta_clone_2.printStats();
 }

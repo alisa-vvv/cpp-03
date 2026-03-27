@@ -17,6 +17,8 @@ auto	main(
 ) -> int {
 	ClapTrap	fedya("Fedya");
 	ClapTrap	vanya("Vanya");
+	ClapTrap	fedya_clone(fedya);
+	ClapTrap	vanya_clone = vanya;
 
 	fedya.printStats();
 	vanya.printStats();
@@ -28,4 +30,7 @@ auto	main(
 
 	fedya.printStats();
 	vanya.printStats();
+
+	fedya_clone.printStats();
+	vanya_clone.printStats();
 }

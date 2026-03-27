@@ -30,10 +30,7 @@ public:
 	using	ScavTrap::attack;
 	using	ScavTrap::guardGate;
 	using	FragTrap::highFiveGuys;
-//	auto attack(
-//		const std::string&	target
-//	) -> void;
-//
+
 	auto takeDamage(
 		unsigned int	amount
 	) -> void;
@@ -42,9 +39,9 @@ public:
 		unsigned int	amount
 	) -> void;
 
-//	auto guardGate(
-//	) -> void;
-//
+	auto	whoAmI(
+	) -> void;
+
 	auto printStats(
 	) -> void;
 

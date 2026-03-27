@@ -10,41 +10,26 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ClapTrap.hpp"
-#include "ScavTrap.hpp"
 #include "FragTrap.hpp"
 
 auto	main(
 	void
 ) -> int {
-	ClapTrap	vanya("Vanya");
-	ScavTrap	sveta("Sveta");
 	FragTrap	sasha("Sasha");
+	//FragTrap	sasha_clone(sasha);
+	//FragTrap	sasha_clone_2 = sasha;
 
-	vanya.printStats();
-	sveta.printStats();
 	sasha.printStats();
 
-	vanya.attack("Sveta");
-	sveta.takeDamage(3);
-	sveta.attack("Vanya");
-	vanya.takeDamage(20);
-	sasha.attack("Sveta");
-	sveta.takeDamage(30);
-	sveta.attack("Sasha");
-	sasha.takeDamage(50);
-
-	vanya.printStats();
-	sveta.printStats();
+	sasha.attack("Sasha");
+	sasha.takeDamage(30);
 	sasha.printStats();
 
-	vanya.beReparied(7);
-	sveta.beReparied(2);
 	sasha.beReparied(15);
-
-	vanya.printStats();
 	sasha.printStats();
-	sveta.printStats();
-	sveta.guardGate();
+
 	sasha.highFiveGuys();
+
+	//sasha_clone.printStats();
+	//sasha_clone_2.printStats();
 }
