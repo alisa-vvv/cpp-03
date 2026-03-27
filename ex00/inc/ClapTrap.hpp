@@ -49,7 +49,4 @@ private:
 	unsigned int	_hit_points;
 	unsigned int	_energy_points;
 	unsigned int	_attack_damage;
-
-	auto	_checkEnergy(
-	) -> void;
 };

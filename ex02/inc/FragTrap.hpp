@@ -23,9 +23,6 @@ public:
 	FragTrap&	operator=(const FragTrap& other);
 	~FragTrap();
 
-	// this inherits all the constructors/destructors from ClapTrap class.
-	// if only some constructors need to be inherited, you just call the parent's
-	// constructors from a child's constructors.
 	auto attack(
 		const std::string&	target
 	) -> void;
